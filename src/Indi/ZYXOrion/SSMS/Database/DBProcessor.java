@@ -13,6 +13,9 @@ public class DBProcessor {
         if (!user.getPassword().equals(newUser.getPassword())) {
             state = false;
         }
+        if(user.getLevel()!=newUser.getLevel()){
+            state = false;
+        }
         connect.close();
         return state;
     }

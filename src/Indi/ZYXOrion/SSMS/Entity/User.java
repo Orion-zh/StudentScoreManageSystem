@@ -3,6 +3,7 @@ package Indi.ZYXOrion.SSMS.Entity;
 public class User {
     private String username;
     private String password;
+    private int level;
     private int isLogin = 0;
     public int getIsLogin() {
         return isLogin;
@@ -22,5 +23,10 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
+    public void setLevel(int level){
+        this.level=level;
+    }
+    public int getLevel(){
+        return level;
+    }
 }

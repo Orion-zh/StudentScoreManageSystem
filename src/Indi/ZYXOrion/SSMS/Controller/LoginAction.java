@@ -2,7 +2,9 @@ package Indi.ZYXOrion.SSMS.Controller;
 
 import Indi.ZYXOrion.SSMS.Database.DBProcessor;
 import Indi.ZYXOrion.SSMS.Entity.User;
+import Indi.ZYXOrion.SSMS.Frame.AdminMainFrame;
 import Indi.ZYXOrion.SSMS.Frame.StudentMainFrame;
+import Indi.ZYXOrion.SSMS.Frame.TeacherMainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,12 +13,15 @@ import java.awt.event.ActionListener;
 public class LoginAction implements ActionListener {
     private JTextField usernameText;
     private JPasswordField passwordText;
-
+    private int level;
     public void setUsernameText(JTextField username){
         usernameText = username;
     }
     public void setPasswordText(JPasswordField password){
         passwordText = password;
+    }
+    public void setLevel(int level){
+        this.level=level;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -36,6 +41,7 @@ public class LoginAction implements ActionListener {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
+        user.setLevel(level);
         DBProcessor processor = new DBProcessor();
         if(processor.Login(user)){
             /*if(processor.CheckIsLogin(user)){
@@ -47,12 +53,19 @@ public class LoginAction implements ActionListener {
                 user.setIsLogin(1);
                 processor.UpdateIsLogin(user);
                 user.setPassword("");
-                System.out.println("新建一个窗口");
-                StudentMainFrame frame = new StudentMainFrame();
+                if(level==1) {
+                    StudentMainFrame frame = new StudentMainFrame();
+                }
+                else if(level==2){
+                    TeacherMainFrame frame = new TeacherMainFrame();
+                }
+                else if(level==3){
+                    AdminMainFrame frame = new AdminMainFrame();
+                }
                 return ;
-           // }
+            //}
         }else{
-            JOptionPane.showMessageDialog(jf, "用户名或密码错误！");
+            JOptionPane.showMessageDialog(jf, "用户名、密码或权限错误！");
             Reset();
             return ;
         }

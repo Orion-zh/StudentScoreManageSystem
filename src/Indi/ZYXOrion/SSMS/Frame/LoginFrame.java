@@ -2,9 +2,12 @@ package Indi.ZYXOrion.SSMS.Frame;
 
 import Indi.ZYXOrion.SSMS.Controller.LoginAction;
 import Indi.ZYXOrion.SSMS.Controller.RegisterAction;
+import com.sun.javaws.IconUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LoginFrame extends JFrame{
     private JLabel usernameLabel;
@@ -19,6 +22,8 @@ public class LoginFrame extends JFrame{
     private JRadioButton teacherButton;
     private JRadioButton adminButton;
     private Container con;
+    private LoginAction loginAction;
+    private int level = 1;
     public LoginFrame(){
         //组件
         con = getContentPane();
@@ -62,29 +67,46 @@ public class LoginFrame extends JFrame{
     }
     private void setChooser(){
         privilege = new ButtonGroup();
-
         studentButton = new JRadioButton("学生");
         privilege.add(studentButton);
         studentButton.setBounds(295,330,80,30);
         studentButton.setBackground(Color.white);
         studentButton.setSelected(true);
+        studentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginAction.setLevel(1);
+            }
+        });
         this.con.add(studentButton);
 
         teacherButton = new JRadioButton("老师");
         privilege.add(teacherButton);
         teacherButton.setBounds(370,330,60,30);
         teacherButton.setBackground(Color.white);
+        teacherButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginAction.setLevel(2);
+            }
+        });
         this.con.add(teacherButton);
 
         adminButton = new JRadioButton("管理员");
         privilege.add(adminButton);
         adminButton.setBounds(445,330,80,30);
         adminButton.setBackground(Color.white);
+        adminButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                loginAction.setLevel(3);
+            }
+        });
         this.con.add(adminButton);
     }
     private void setButton(){
         //按键
-        LoginAction loginAction = new LoginAction();
+        loginAction = new LoginAction();
         loginAction.setUsernameText(usernameText);
         loginAction.setPasswordText(passwordText);
         loginButton = new JButton("登录");

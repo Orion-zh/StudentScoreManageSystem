@@ -38,6 +38,7 @@ public class DBConnector implements JDBCConfig{
                 newUser.setUsername(resultSet.getString(1));
                 newUser.setPassword(resultSet.getString(2));
                 newUser.setIsLogin(resultSet.getInt(3));
+                newUser.setLevel(resultSet.getInt(4));
             }
         } catch (SQLException e) {
             e.printStackTrace();
