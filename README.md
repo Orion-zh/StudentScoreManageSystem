@@ -1,0 +1,2 @@
+# StudentScoreManageSystem
+SSMS
