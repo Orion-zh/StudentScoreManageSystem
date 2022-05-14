@@ -37,21 +37,15 @@ public class LoginAction implements ActionListener {
             JOptionPane.showMessageDialog(jf, "密码不能为空","",JOptionPane.WARNING_MESSAGE);
             return ;
         }
-        //登录业务处理。
+        //登录业务处理
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
         user.setLevel(level);
         DBProcessor processor = new DBProcessor();
         if(processor.Login(user)){
-            /*if(processor.CheckIsLogin(user)){
-                JOptionPane.showMessageDialog(jf, "重复登陆！","",JOptionPane.WARNING_MESSAGE);
-                return ;
-            }else{*/
                 JOptionPane.showMessageDialog(jf, "登陆成功！");
                 jf.dispose();
-                user.setIsLogin(1);
-                processor.UpdateIsLogin(user);
                 user.setPassword("");
                 if(level==1) {
                     StudentMainFrame frame = new StudentMainFrame();
@@ -63,7 +57,6 @@ public class LoginAction implements ActionListener {
                     AdminMainFrame frame = new AdminMainFrame();
                 }
                 return ;
-            //}
         }else{
             JOptionPane.showMessageDialog(jf, "用户名、密码或权限错误！");
             Reset();

@@ -37,30 +37,12 @@ public class DBConnector implements JDBCConfig{
             if(resultSet.next()){
                 newUser.setUsername(resultSet.getString(1));
                 newUser.setPassword(resultSet.getString(2));
-                newUser.setIsLogin(resultSet.getInt(3));
                 newUser.setLevel(resultSet.getInt(4));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return newUser;
-    }
-
-    //修改登录状态
-    public boolean update_IsLogin(User user){
-        boolean state = true;
-        try {
-            preparedStatement = connection.prepareStatement("update tb_User set IsLogin=? where User_name=?");
-            preparedStatement.setInt(1, user.getIsLogin());
-            preparedStatement.setString(2, user.getUsername());
-            if(preparedStatement.executeUpdate()!=1){
-                state = false;
-            }
-        } catch (SQLException e) {
-            state = false;
-            e.printStackTrace();
-        }
-        return state;
     }
 
     //关闭数据库连接

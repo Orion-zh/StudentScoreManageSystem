@@ -4,13 +4,6 @@ public class User {
     private String username;
     private String password;
     private int level;
-    private int isLogin = 0;
-    public int getIsLogin() {
-        return isLogin;
-    }
-    public void setIsLogin(int isLogin) {
-        this.isLogin = isLogin;
-    }
     public String getUsername() {
         return username;
     }
