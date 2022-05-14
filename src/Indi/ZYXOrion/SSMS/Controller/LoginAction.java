@@ -11,15 +11,18 @@ import java.awt.event.ActionListener;
 public class LoginAction implements ActionListener {
     private JTextField usernameText;
     private JPasswordField passwordText;
+
+    public void setUsernameText(JTextField username){
+        usernameText = username;
+    }
+    public void setPasswordText(JPasswordField password){
+        passwordText = password;
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         //读取
-        /*
         String username = usernameText.getText().trim();
         String password = new String(passwordText.getPassword());
-        */
-        String username = "test";
-        String password = "test";
         JFrame jf = new JFrame("错误");
         if(username.equals("")){
             JOptionPane.showMessageDialog(jf, "用户名不能为空","",JOptionPane.WARNING_MESSAGE);
@@ -34,32 +37,28 @@ public class LoginAction implements ActionListener {
         user.setUsername(username);
         user.setPassword(password);
         DBProcessor processor = new DBProcessor();
-        if(processor.Login(user)){	//登陆业务处理
-            if(processor.CheckIsLogin(user)){
-                //JOptionPane.showMessageDialog(jf, "重复登陆！","",JOptionPane.WARNING_MESSAGE);
-                //return ;
-            }else{
+        if(processor.Login(user)){
+            /*if(processor.CheckIsLogin(user)){
+                JOptionPane.showMessageDialog(jf, "重复登陆！","",JOptionPane.WARNING_MESSAGE);
+                return ;
+            }else{*/
                 JOptionPane.showMessageDialog(jf, "登陆成功！");
                 jf.dispose();
                 user.setIsLogin(1);
                 processor.UpdateIsLogin(user);
                 user.setPassword("");
                 System.out.println("新建一个窗口");
-                //StudentMainFrame frame = new StudentMainFrame(user);
+                StudentMainFrame frame = new StudentMainFrame();
                 return ;
-            }
+           // }
         }else{
             JOptionPane.showMessageDialog(jf, "用户名或密码错误！");
             Reset();
             return ;
         }
     }
-    public void setText(JTextField username,JPasswordField password){
-        this.usernameText = username;
-        this.passwordText = password;
-    }
     public void Reset(){
-        //usernameText.setText("");
-        //passwordText.setText("");
+        usernameText.setText("");
+        passwordText.setText("");
     }
 }

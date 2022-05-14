@@ -85,6 +85,8 @@ public class LoginFrame extends JFrame{
     private void setButton(){
         //°´¼ü
         LoginAction loginAction = new LoginAction();
+        loginAction.setUsernameText(usernameText);
+        loginAction.setPasswordText(passwordText);
         loginButton = new JButton("µÇÂ¼");
         loginButton.setBounds(295, 380, 60, 30);
         loginButton.addActionListener(loginAction);
