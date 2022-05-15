@@ -19,6 +19,13 @@ public class DBProcessor {
         connect.close();
         return state;
     }
-
-
+    public User getUser(User user){
+        return connect.getUser(user);
+    }
+    //创建用户
+    public boolean AddUser(User user){
+        connect = new DBConnector();
+        connect.AddUser(user);
+        return true;
+    }
 }

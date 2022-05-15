@@ -1,8 +1,6 @@
 package Indi.ZYXOrion.SSMS.Frame;
 
 import Indi.ZYXOrion.SSMS.Controller.LoginAction;
-import Indi.ZYXOrion.SSMS.Controller.RegisterAction;
-import com.sun.javaws.IconUtil;
 
 import javax.swing.*;
 import java.awt.*;
@@ -110,12 +108,9 @@ public class LoginFrame extends JFrame{
         loginAction.setUsernameText(usernameText);
         loginAction.setPasswordText(passwordText);
         loginButton = new JButton("µÇÂ¼");
-        loginButton.setBounds(295, 380, 60, 30);
+        loginButton.setBounds(370, 380, 60, 30);
         loginButton.addActionListener(loginAction);
         this.con.add(loginButton);
-        registerButton = new JButton("×¢²á");
-        registerButton.setBounds(465, 380, 60, 30);
-        registerButton.addActionListener(new RegisterAction());
-        this.con.add(registerButton);
+
     }
 }

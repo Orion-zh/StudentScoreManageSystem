@@ -55,6 +55,10 @@ public class DBConnector implements JDBCConfig{
             e.printStackTrace();
         }
     }
+    //创建用户
+    public void AddUser(User user){
+
+    }
 
 
 }

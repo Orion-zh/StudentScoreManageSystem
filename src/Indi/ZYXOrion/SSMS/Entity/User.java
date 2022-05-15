@@ -4,6 +4,7 @@ public class User {
     private String username;
     private String password;
     private int level;
+    private String name;
     public String getUsername() {
         return username;
     }
@@ -22,4 +23,6 @@ public class User {
     public int getLevel(){
         return level;
     }
+    public void setName(String name){this.name = name;}
+    public String getName(){return this.name;}
 }
