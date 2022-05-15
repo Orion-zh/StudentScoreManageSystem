@@ -25,7 +25,8 @@ public class DBProcessor {
     //创建用户
     public boolean AddUser(User user){
         connect = new DBConnector();
-        connect.AddUser(user);
-        return true;
+        boolean state = connect.AddUser(user);
+        connect.close();
+        return state;
     }
 }

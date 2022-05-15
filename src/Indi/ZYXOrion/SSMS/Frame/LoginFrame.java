@@ -36,6 +36,7 @@ public class LoginFrame extends JFrame{
     }
     private void Init(){
         this.setTitle("学生成绩管理系统");
+        this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
         this.setLayout(null);
         this.setBounds(540,240,800,600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

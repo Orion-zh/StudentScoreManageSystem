@@ -20,6 +20,7 @@ public class AdminMainFrame extends JFrame {
     public AdminMainFrame(User user){
         this.setBackground(Color.white);
         this.setTitle("学生成绩管理系统-管理员");
+        this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
         this.setBounds(540,240,800,600);
         setButtonPanel();
         setButtons(user);

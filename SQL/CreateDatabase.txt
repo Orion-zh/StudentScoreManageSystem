@@ -47,5 +47,6 @@ FOREIGN KEY (courseID) REFERENCES Course(courseID)
 CREATE TABLE Users(
 userLoginName VARCHAR(11) PRIMARY KEY,
 userName VARCHAR(30) NOT NULL,
+userPassword VARCHAR(30),
 userLevel int NOT NULL
 );

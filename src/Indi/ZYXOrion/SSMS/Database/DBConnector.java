@@ -31,13 +31,14 @@ public class DBConnector implements JDBCConfig{
     public User getUser(User user){
         User newUser = new User();
         try {
-            preparedStatement = connection.prepareStatement("select * from tb_User where User_name=?");
+            preparedStatement = connection.prepareStatement("select * from Users where userLoginName=?");
             preparedStatement.setString(1, user.getUsername());
             resultSet = preparedStatement.executeQuery();
             if(resultSet.next()){
                 newUser.setUsername(resultSet.getString(1));
-                newUser.setPassword(resultSet.getString(2));
+                newUser.setPassword(resultSet.getString(3));
                 newUser.setLevel(resultSet.getInt(4));
+                newUser.setName(resultSet.getString(2));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -56,8 +57,22 @@ public class DBConnector implements JDBCConfig{
         }
     }
     //创建用户
-    public void AddUser(User user){
-
+    public boolean AddUser(User user){
+        boolean state = true;
+        try{
+            preparedStatement = connection.prepareStatement("insert into Users(userLoginName,userName,userPassword,userLevel) values (?,?,?,?)");
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getName());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setInt(4,user.getLevel());
+            if(preparedStatement.executeUpdate()!=1){
+                state = false;
+            }
+        } catch (SQLException e){
+            state = false;
+            e.printStackTrace();
+        }
+        return state;
     }
 
 
