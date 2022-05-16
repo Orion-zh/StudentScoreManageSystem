@@ -1,7 +1,6 @@
 package Indi.ZYXOrion.SSMS.Frame;
 
 import Indi.ZYXOrion.SSMS.Controller.AddUserAction;
-import Indi.ZYXOrion.SSMS.Entity.User;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,11 +8,14 @@ import java.awt.event.ActionListener;
 
 public class AddUserFrame extends JDialog {
     AddUserAction addUserAction = new AddUserAction();
-    public AddUserFrame(){
+    AdminMainFrame fatherFrame;
+    public AddUserFrame(AdminMainFrame mainFrame){
         this.setTitle("创建用户");
         this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
         this.setBounds(800,270,320,540);
         this.setLayout(null);
+        fatherFrame = mainFrame;
+        addUserAction.setRefreshTarget(fatherFrame);
         addUserAction.setFatherFrame(this);
         addUserAction.setLevel(1);
         setInput();
@@ -101,4 +103,5 @@ public class AddUserFrame extends JDialog {
             }
         });
     }
+
 }

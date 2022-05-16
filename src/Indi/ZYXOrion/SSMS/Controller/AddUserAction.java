@@ -2,6 +2,7 @@ package Indi.ZYXOrion.SSMS.Controller;
 
 import Indi.ZYXOrion.SSMS.Database.DBProcessor;
 import Indi.ZYXOrion.SSMS.Entity.User;
+import Indi.ZYXOrion.SSMS.Frame.AdminMainFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -19,6 +20,7 @@ public class AddUserAction implements ActionListener {
     String userRePassword;
     int userLevel;
     JDialog fatherFrame;
+    AdminMainFrame refreshTarget;
     @Override
     public void actionPerformed(ActionEvent e) {
         user = new User();
@@ -49,6 +51,7 @@ public class AddUserAction implements ActionListener {
             return ;
         }
         dbProcessor.AddUser(user);
+        refreshTarget.refresh();
         fatherFrame.dispose();
     }
     public void setLevel(int level){
@@ -68,5 +71,8 @@ public class AddUserAction implements ActionListener {
     }
     public void setFatherFrame(JDialog frame){
         fatherFrame = frame;
+    }
+    public void setRefreshTarget(AdminMainFrame target){
+        refreshTarget = target;
     }
 }

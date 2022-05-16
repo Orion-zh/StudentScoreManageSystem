@@ -2,6 +2,8 @@ package Indi.ZYXOrion.SSMS.Database;
 
 
 import Indi.ZYXOrion.SSMS.Entity.*;
+
+import javax.swing.*;
 import java.util.*;
 import java.sql.*;
 
@@ -57,22 +59,23 @@ public class DBConnector implements JDBCConfig{
         }
     }
     //创建用户
-    public boolean AddUser(User user){
+    public boolean AddUser(User user) {
         boolean state = true;
-        try{
+        try {
             preparedStatement = connection.prepareStatement("insert into Users(userLoginName,userName,userPassword,userLevel) values (?,?,?,?)");
             preparedStatement.setString(1, user.getUsername());
             preparedStatement.setString(2, user.getName());
             preparedStatement.setString(3, user.getPassword());
-            preparedStatement.setInt(4,user.getLevel());
-            if(preparedStatement.executeUpdate()!=1){
+            preparedStatement.setInt(4, user.getLevel());
+            if (preparedStatement.executeUpdate() != 1) {
                 state = false;
             }
-        } catch (SQLException e){
+        } catch (SQLIntegrityConstraintViolationException e){
+            JOptionPane.showMessageDialog(null, "用户已存在", "错误", JOptionPane.ERROR_MESSAGE);
+        }catch (SQLException e){
             state = false;
             e.printStackTrace();
-        }
-        return state;
+        }        return state;
     }
     public Object[][] QueryAdmin(){
         int count = 0;

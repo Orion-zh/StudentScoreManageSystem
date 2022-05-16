@@ -2,7 +2,6 @@ package Indi.ZYXOrion.SSMS.Frame;
 
 import Indi.ZYXOrion.SSMS.Controller.*;
 import Indi.ZYXOrion.SSMS.Entity.User;
-import javafx.scene.control.ScrollPane;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +15,8 @@ public class AdminMainFrame extends JFrame {
     private JPanel panelButton;
     private JScrollPane queryArea;
     private LoadAdminInfo adminInfo;
+    private JTable queryResult;
+    private AdminMainFrame jf = this;
     public AdminMainFrame(User user){
         this.setTitle("学生成绩管理系统-管理员");
         this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
@@ -43,19 +44,17 @@ public class AdminMainFrame extends JFrame {
 
         ChangeUserInfoAction changeUserInfoAction = new ChangeUserInfoAction();
         ExportUserAction exportUserAction = new ExportUserAction(user);
-        DeleteUserAction deleteUserAction = new DeleteUserAction();
+        DeleteUserAction deleteUserAction = new DeleteUserAction(this,adminInfo.getQueryResult());
 
         addUser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddUserFrame addUserFrame = new AddUserFrame();
+                AddUserFrame addUserFrame = new AddUserFrame(jf);
             }
         });
 
         editUser.addActionListener(changeUserInfoAction);
 
-        deleteUserAction.setFatherFrame(this);
-        deleteUserAction.setQueryResult(adminInfo.getQueryResult());
         cancelUser.addActionListener(deleteUserAction);
 
         exportUser.addActionListener(exportUserAction);
@@ -70,7 +69,8 @@ public class AdminMainFrame extends JFrame {
     private void setQueryArea(){
         queryArea = new JScrollPane();
         adminInfo = new LoadAdminInfo();
-        queryArea.getViewport().add(adminInfo.getQueryResult());
+        queryResult = adminInfo.getQueryResult();
+        queryArea.getViewport().add(queryResult);
         queryArea.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         this.add(queryArea,BorderLayout.CENTER);
     }
@@ -84,5 +84,11 @@ public class AdminMainFrame extends JFrame {
         this.add(panelLeft,BorderLayout.WEST);
         this.add(panelRight,BorderLayout.EAST);
         this.add(panelButton,BorderLayout.SOUTH);
+    }
+    public void refresh(){
+        queryArea.getViewport().remove(queryResult);
+        adminInfo = new LoadAdminInfo();
+        queryResult = adminInfo.getQueryResult();
+        queryArea.getViewport().add(queryResult);
     }
 }
