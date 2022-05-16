@@ -29,4 +29,15 @@ public class DBProcessor {
         connect.close();
         return state;
     }
+    public Object[][] getAdminQuery(){
+        Object[][] objects;
+        DBConnector connector = new DBConnector();
+        objects = connector.QueryAdmin();
+        return objects;
+    }
+    public boolean deleteUser(String userLoginName){
+        connect = new DBConnector();
+        boolean state = connect.DeleteUser(userLoginName);
+        return state;
+    }
 }

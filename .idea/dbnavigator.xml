@@ -38,6 +38,9 @@
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="41dca940-697a-44c8-9588-8f01c09273e8" />
   </component>
+  <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="41dca940-697a-44c8-9588-8f01c09273e8" dataset="SSMS.Users" active-filter-id="" />
+  </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
   </component>

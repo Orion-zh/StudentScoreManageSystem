@@ -74,6 +74,51 @@ public class DBConnector implements JDBCConfig{
         }
         return state;
     }
-
-
+    public Object[][] QueryAdmin(){
+        int count = 0;
+        Object[][] objects;
+        try{
+            preparedStatement = connection.prepareStatement("select * from Users");
+            resultSet = preparedStatement.executeQuery();
+            while(resultSet.next()){
+                count++;
+            }
+            objects = new Object[count][4];
+            resultSet = preparedStatement.executeQuery();
+            count = 0;
+            while(resultSet.next()){
+                objects[count][0] = resultSet.getString("userLoginName");
+                objects[count][1] = resultSet.getString("userName");
+                objects[count][2] = resultSet.getString("userPassword");
+                int level = Integer.valueOf(resultSet.getInt("userLevel"));
+                if(level == 1){
+                    objects[count][3] = "学生";
+                }
+                else if(level == 2){
+                    objects[count][3] = "老师";
+                }
+                else if(level == 3){
+                    objects[count][3] = "管理员";
+                }
+                count++;
+            }
+        } catch (SQLException e){
+            objects = new Object[1][1];
+            e.printStackTrace();
+        }
+        return objects;
+    }
+    public boolean DeleteUser(String userLoginName){
+        boolean state = true;
+        try{
+            preparedStatement = connection.prepareStatement("delete from Users where userLoginName=?");
+            preparedStatement.setString(1,userLoginName);
+            if(preparedStatement.executeUpdate()!=1){
+                state = false;
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return state;
+    }
 }
