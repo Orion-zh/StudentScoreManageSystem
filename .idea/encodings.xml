@@ -9,6 +9,7 @@
     <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Controller/AddUserAction.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Controller/ChangeUserInfoAction.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Controller/DeleteUserAction.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Controller/EditUserAction.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Controller/ExportUserAction.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Controller/LoadAdminInfo.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Controller/LoginAction.java" charset="GBK" />
@@ -21,6 +22,7 @@
     <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Entity/User.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Frame/AddUserFrame.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Frame/AdminMainFrame.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Frame/EditUserFrame.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Frame/LoginFrame.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Frame/StudentMainFrame.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/Indi/ZYXOrion/SSMS/Frame/TeacherMainFrame.java" charset="GBK" />

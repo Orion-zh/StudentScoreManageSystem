@@ -17,6 +17,7 @@ public class AdminMainFrame extends JFrame {
     private LoadAdminInfo adminInfo;
     private JTable queryResult;
     private AdminMainFrame jf = this;
+    private DeleteUserAction deleteUserAction;
     public AdminMainFrame(User user){
         this.setTitle("学生成绩管理系统-管理员");
         this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
@@ -42,9 +43,9 @@ public class AdminMainFrame extends JFrame {
         cancelUser.setPreferredSize(new Dimension(120,40));
         exportUser.setPreferredSize(new Dimension(120,40));
 
-        ChangeUserInfoAction changeUserInfoAction = new ChangeUserInfoAction();
+        EditUserAction editUserAction = new EditUserAction();
         ExportUserAction exportUserAction = new ExportUserAction(user);
-        DeleteUserAction deleteUserAction = new DeleteUserAction(this,adminInfo.getQueryResult());
+        deleteUserAction = new DeleteUserAction(this,adminInfo.getQueryResult());
 
         addUser.addActionListener(new ActionListener() {
             @Override
@@ -53,7 +54,12 @@ public class AdminMainFrame extends JFrame {
             }
         });
 
-        editUser.addActionListener(changeUserInfoAction);
+        editUser.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EditUserFrame editUserFrame = new EditUserFrame(jf,queryResult.getValueAt(queryResult.getSelectedRow(),0).toString());
+            }
+        });
 
         cancelUser.addActionListener(deleteUserAction);
 
@@ -90,5 +96,6 @@ public class AdminMainFrame extends JFrame {
         adminInfo = new LoadAdminInfo();
         queryResult = adminInfo.getQueryResult();
         queryArea.getViewport().add(queryResult);
+        deleteUserAction = new DeleteUserAction(this,adminInfo.getQueryResult());
     }
 }

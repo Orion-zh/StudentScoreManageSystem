@@ -19,7 +19,9 @@ public class DeleteUserAction implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         int row = queryTable.getSelectedRow();
+        System.out.println(row);
         userLoginName = queryTable.getValueAt(row,1).toString();
+        System.out.println(userLoginName);
         JOptionPane optionPane = new JOptionPane();
         state = optionPane.showConfirmDialog(fatherFrame,"你确定要删除吗？","删除用户",JOptionPane.OK_CANCEL_OPTION);
         if(state==JOptionPane.OK_OPTION){

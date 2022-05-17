@@ -40,4 +40,11 @@ public class DBProcessor {
         boolean state = connect.DeleteUser(userLoginName);
         return state;
     }
+    public boolean EditUser(User user){
+        connect = new DBConnector();
+        boolean state = connect.EditUser(user);
+        connect.close();
+        return state;
+    }
+
 }

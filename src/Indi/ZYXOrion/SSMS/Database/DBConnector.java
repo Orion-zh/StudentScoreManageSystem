@@ -75,7 +75,8 @@ public class DBConnector implements JDBCConfig{
         }catch (SQLException e){
             state = false;
             e.printStackTrace();
-        }        return state;
+        }
+        return state;
     }
     public Object[][] QueryAdmin(){
         int count = 0;
@@ -116,10 +117,50 @@ public class DBConnector implements JDBCConfig{
         try{
             preparedStatement = connection.prepareStatement("delete from Users where userLoginName=?");
             preparedStatement.setString(1,userLoginName);
-            if(preparedStatement.executeUpdate()!=1){
+            int s =preparedStatement.executeUpdate();
+            if(s!=1){
+                System.out.println("Error");
                 state = false;
             }
         } catch(SQLException e){
+            state = false;
+            e.printStackTrace();
+        }
+        return state;
+    }
+    public boolean EditUser(User user){
+        boolean state = true;
+        try {
+            preparedStatement = connection.prepareStatement("update Users set userName = ? where userLoginName = ? ;");
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getUsername());
+            if (preparedStatement.executeUpdate() != 1) {
+                state = false;
+            }
+        } catch (SQLException e){
+            state = false;
+            e.printStackTrace();
+        }
+        try {
+            preparedStatement = connection.prepareStatement("update Users set userPassword = ? where userLoginName = ? ;");
+            preparedStatement.setString(1, user.getPassword());
+            preparedStatement.setString(2, user.getUsername());
+            if (preparedStatement.executeUpdate() != 1) {
+                state = false;
+            }
+        } catch (SQLException e){
+            state = false;
+            e.printStackTrace();
+        }
+        try {
+            preparedStatement = connection.prepareStatement("update Users set userLevel = ? where userLoginName = ? ;");
+            preparedStatement.setInt(1, user.getLevel());
+            preparedStatement.setString(2, user.getUsername());
+            if (preparedStatement.executeUpdate() != 1) {
+                state = false;
+            }
+        } catch (SQLException e){
+            state = false;
             e.printStackTrace();
         }
         return state;

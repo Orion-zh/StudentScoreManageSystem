@@ -3,6 +3,7 @@ package Indi.ZYXOrion.SSMS.Controller;
 import Indi.ZYXOrion.SSMS.Database.DBProcessor;
 import Indi.ZYXOrion.SSMS.Entity.User;
 import Indi.ZYXOrion.SSMS.Frame.AdminMainFrame;
+import Indi.ZYXOrion.SSMS.Frame.LoginFrame;
 import Indi.ZYXOrion.SSMS.Frame.StudentMainFrame;
 import Indi.ZYXOrion.SSMS.Frame.TeacherMainFrame;
 
@@ -14,6 +15,7 @@ public class LoginAction implements ActionListener {
     private JTextField usernameText;
     private JPasswordField passwordText;
     private int level;
+    private LoginFrame jf;
     public void setUsernameText(JTextField username){
         usernameText = username;
     }
@@ -56,6 +58,7 @@ public class LoginAction implements ActionListener {
                 else if(level==3){
                     AdminMainFrame frame = new AdminMainFrame(processor.getUser(user));
                 }
+                jf.dispose();
                 return ;
         }else{
             JOptionPane.showMessageDialog(jf, "用户名、密码或权限错误！");
@@ -66,5 +69,8 @@ public class LoginAction implements ActionListener {
     public void Reset(){
         usernameText.setText("");
         passwordText.setText("");
+    }
+    public void fatherFrame(LoginFrame frame){
+        jf = frame;
     }
 }

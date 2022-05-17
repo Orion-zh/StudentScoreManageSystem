@@ -13,7 +13,6 @@ public class LoginFrame extends JFrame{
     private JTextField usernameText;
     private JPasswordField passwordText;
     private JButton loginButton;
-    private JButton registerButton;
     private JLabel labelImage;
     private ButtonGroup privilege;
     private JRadioButton studentButton;
@@ -21,6 +20,7 @@ public class LoginFrame extends JFrame{
     private JRadioButton adminButton;
     private Container con;
     private LoginAction loginAction;
+    private LoginFrame jf = this;
     private int level = 1;
     public LoginFrame(){
         //×é¼þ
@@ -106,6 +106,7 @@ public class LoginFrame extends JFrame{
     private void setButton(){
         //°´¼ü
         loginAction = new LoginAction();
+        loginAction.fatherFrame(jf);
         loginAction.setUsernameText(usernameText);
         loginAction.setPasswordText(passwordText);
         loginButton = new JButton("µÇÂ¼");

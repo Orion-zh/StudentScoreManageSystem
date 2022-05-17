@@ -1,23 +1,26 @@
 package Indi.ZYXOrion.SSMS.Frame;
 
 import Indi.ZYXOrion.SSMS.Controller.AddUserAction;
+import Indi.ZYXOrion.SSMS.Controller.EditUserAction;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddUserFrame extends JDialog {
-    AddUserAction addUserAction = new AddUserAction();
+public class EditUserFrame extends JDialog {
+    EditUserAction editUserAction = new EditUserAction();
     AdminMainFrame fatherFrame;
-    public AddUserFrame(AdminMainFrame mainFrame){
-        this.setTitle("创建用户");
+    String userLoginName;
+    public EditUserFrame(AdminMainFrame mainFrame,String userLoginname){
+        this.setTitle("修改用户信息");
         this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
         this.setBounds(800,270,320,540);
         this.setLayout(null);
+        this.userLoginName = userLoginname;
         fatherFrame = mainFrame;
-        addUserAction.setRefreshTarget(fatherFrame);
-        addUserAction.setFatherFrame(this);
-        addUserAction.setLevel(1);
+        editUserAction.setRefreshTarget(fatherFrame);
+        editUserAction.setFatherFrame(this);
+        editUserAction.setLevel(1);
         setInput();
         setChooser();
         setConfirm();
@@ -26,7 +29,7 @@ public class AddUserFrame extends JDialog {
     }
     private void setInput(){
         JLabel usernameLabel = new JLabel("用户名：");
-        JTextField usernameText = new JTextField();
+        JLabel usernameText = new JLabel(userLoginName);
         JLabel nameLabel = new JLabel("姓名：");
         JTextField nameText = new JTextField();
         JLabel passwordLabel = new JLabel("密码：");
@@ -49,7 +52,7 @@ public class AddUserFrame extends JDialog {
         rePasswordText.setBounds(115,200,150,30);
         this.add(rePasswordLabel);
         this.add(rePasswordText);
-        addUserAction.setInput(usernameText,nameText,passwordText,rePasswordText);
+        editUserAction.setInput(usernameText,nameText,passwordText,rePasswordText);
     }
     private void setChooser(){
         JLabel levelLabel = new JLabel("权限：");
@@ -69,19 +72,19 @@ public class AddUserFrame extends JDialog {
         studentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addUserAction.setLevel(1);
+                editUserAction.setLevel(1);
             }
         });
         teacherButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addUserAction.setLevel(2);
+                editUserAction.setLevel(2);
             }
         });
         adminButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addUserAction.setLevel(3);
+                editUserAction.setLevel(3);
             }
         });
         this.add(studentButton);
@@ -95,7 +98,7 @@ public class AddUserFrame extends JDialog {
         cancel.setBounds(190,300,70,50);
         this.add(confirm);
         this.add(cancel);
-        confirm.addActionListener(addUserAction);
+        confirm.addActionListener(editUserAction);
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
