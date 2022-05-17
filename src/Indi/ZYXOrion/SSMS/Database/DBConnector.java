@@ -13,8 +13,8 @@ public class DBConnector implements JDBCConfig{
     private PreparedStatement preparedStatement = null;
     private ResultSet resultSet = null;
     private Connection connection = null;
-    //建立连接
-    private void Init(){
+    //构造函数建立连接
+    public DBConnector(){
         try {
             Class.forName(DRIVER);
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -24,10 +24,6 @@ public class DBConnector implements JDBCConfig{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-    //构造函数
-    public DBConnector(){
-        Init();
     }
     //获取用户对象
     public User getUser(User user){

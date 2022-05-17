@@ -20,7 +20,9 @@ public class DBProcessor {
         return state;
     }
     public User getUser(User user){
-        return connect.getUser(user);
+        connect = new DBConnector();
+        User DBuser =  connect.getUser(user);
+        return DBuser;
     }
     //创建用户
     public boolean AddUser(User user){

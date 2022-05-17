@@ -10,18 +10,16 @@ import java.awt.event.ActionListener;
 public class DeleteUserAction implements ActionListener{
     String userLoginName;
     AdminMainFrame fatherFrame;
-    JTable queryTable;
+    JTable queryResult;
     int state;
     public DeleteUserAction(AdminMainFrame fr, JTable table){
         fatherFrame = fr;
-        queryTable = table;
+        queryResult = table;
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        int row = queryTable.getSelectedRow();
-        System.out.println(row);
-        userLoginName = queryTable.getValueAt(row,1).toString();
-        System.out.println(userLoginName);
+        int row = queryResult.getSelectedRow();
+        userLoginName = queryResult.getValueAt(row,1).toString();
         JOptionPane optionPane = new JOptionPane();
         state = optionPane.showConfirmDialog(fatherFrame,"你确定要删除吗？","删除用户",JOptionPane.OK_CANCEL_OPTION);
         if(state==JOptionPane.OK_OPTION){

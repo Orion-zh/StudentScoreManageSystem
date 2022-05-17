@@ -4,6 +4,8 @@ import Indi.ZYXOrion.SSMS.Controller.*;
 import Indi.ZYXOrion.SSMS.Entity.User;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -71,6 +73,16 @@ public class AdminMainFrame extends JFrame {
         buttonPanel.add(exportUser);
         buttonPanel.add(new JLabel("»¶Ó­Äú!"));
         buttonPanel.add(new JLabel(user.getUsername()));
+
+        JButton reFREsh = new JButton("Ë¢ÐÂ");
+        reFREsh.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                refresh();
+            }
+        });
+        buttonPanel.add(reFREsh);
+
     }
     private void setQueryArea(){
         queryArea = new JScrollPane();
@@ -92,10 +104,6 @@ public class AdminMainFrame extends JFrame {
         this.add(panelButton,BorderLayout.SOUTH);
     }
     public void refresh(){
-        queryArea.getViewport().remove(queryResult);
-        adminInfo = new LoadAdminInfo();
-        queryResult = adminInfo.getQueryResult();
-        queryArea.getViewport().add(queryResult);
-        deleteUserAction = new DeleteUserAction(this,adminInfo.getQueryResult());
+        adminInfo.freshAdminInfo();
     }
 }

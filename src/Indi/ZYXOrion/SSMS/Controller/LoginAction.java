@@ -15,7 +15,7 @@ public class LoginAction implements ActionListener {
     private JTextField usernameText;
     private JPasswordField passwordText;
     private int level;
-    private LoginFrame jf;
+    private LoginFrame jframe;
     public void setUsernameText(JTextField username){
         usernameText = username;
     }
@@ -58,7 +58,7 @@ public class LoginAction implements ActionListener {
                 else if(level==3){
                     AdminMainFrame frame = new AdminMainFrame(processor.getUser(user));
                 }
-                jf.dispose();
+                jframe.dispose();
                 return ;
         }else{
             JOptionPane.showMessageDialog(jf, "用户名、密码或权限错误！");
@@ -71,6 +71,6 @@ public class LoginAction implements ActionListener {
         passwordText.setText("");
     }
     public void fatherFrame(LoginFrame frame){
-        jf = frame;
+        jframe = frame;
     }
 }
