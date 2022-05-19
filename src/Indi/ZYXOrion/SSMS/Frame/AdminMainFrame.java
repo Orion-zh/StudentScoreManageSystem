@@ -73,16 +73,6 @@ public class AdminMainFrame extends JFrame {
         buttonPanel.add(exportUser);
         buttonPanel.add(new JLabel("»¶Ó­Äú!"));
         buttonPanel.add(new JLabel(user.getUsername()));
-
-        JButton reFREsh = new JButton("Ë¢ÐÂ");
-        reFREsh.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                refresh();
-            }
-        });
-        buttonPanel.add(reFREsh);
-
     }
     private void setQueryArea(){
         queryArea = new JScrollPane();
