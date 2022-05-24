@@ -50,10 +50,10 @@ public class LoginAction implements ActionListener {
                 jf.dispose();
                 user.setPassword("");
                 if(level==1) {
-                    StudentMainFrame frame = new StudentMainFrame();
+                    StudentMainFrame frame = new StudentMainFrame(processor.getUser(user));
                 }
                 else if(level==2){
-                    TeacherMainFrame frame = new TeacherMainFrame();
+                    TeacherMainFrame frame = new TeacherMainFrame(processor.getUser(user));
                 }
                 else if(level==3){
                     AdminMainFrame frame = new AdminMainFrame(processor.getUser(user));

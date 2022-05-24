@@ -48,5 +48,11 @@ public class DBProcessor {
         connect.close();
         return state;
     }
+    public Object[][] getStudentQuery(String stuID){
+        Object[][] objects;
+        DBConnector connector = new DBConnector();
+        objects = connector.QueryStudent(stuID);
+        return objects;
+    }
 
 }

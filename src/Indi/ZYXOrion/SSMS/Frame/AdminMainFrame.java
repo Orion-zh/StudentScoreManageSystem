@@ -4,8 +4,6 @@ import Indi.ZYXOrion.SSMS.Controller.*;
 import Indi.ZYXOrion.SSMS.Entity.User;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
