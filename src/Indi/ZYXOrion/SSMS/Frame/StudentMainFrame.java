@@ -45,7 +45,7 @@ public class StudentMainFrame extends JFrame {
         buttonPanel.add(freshInfo);
         buttonPanel.add(new JLabel("欢迎您!"));
         buttonPanel.add(new JLabel(user.getUsername()));
-        buttonPanel.add(new JLabel("    您的GPA是："+scores.countGPA()));
+        buttonPanel.add(new JLabel(String.format("          您的GPA是：%.2f",scores.countGPA())));
     }
     private void setQueryArea(){
         queryArea = new JScrollPane();

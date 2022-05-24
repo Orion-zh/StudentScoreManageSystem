@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TeacherMainFrame extends JFrame {
-    private JPanel buttonPanel;
+    /*private JPanel buttonPanel;
     private JPanel panelLeft;
     private JPanel panelRight;
     private JPanel panelButton;
@@ -96,5 +96,5 @@ public class TeacherMainFrame extends JFrame {
     }
     public void refresh(){
         adminInfo.freshAdminInfo();
-    }
+    }*/
 }

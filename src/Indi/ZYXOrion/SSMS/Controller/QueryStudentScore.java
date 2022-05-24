@@ -37,11 +37,14 @@ public class QueryStudentScore {
     }
     public double countGPA(){
         double GPA;
-        int credit = 0;
-        int sum = 0;
+        double credit = 0.0;
+        double sum = 0.0;
         for(int i=0;i<dataTable.length;i++){
-            credit += Integer.parseInt(dataTable[i][3].toString());
-            sum += Double.parseDouble((dataTable[i][3]).toString())*Double.parseDouble(dataTable[i][5].toString());
+            credit += Double.parseDouble(dataTable[i][3].toString());
+            double changetograde = (Integer.parseInt(dataTable[i][5].toString())-50)/10.0;
+            if(changetograde>4) changetograde=4.0;
+            if(changetograde<1) changetograde=0.0;
+            sum += Double.parseDouble(dataTable[i][3].toString())*changetograde;
         }
         if(credit==0) return 0;
         else GPA=sum/credit;

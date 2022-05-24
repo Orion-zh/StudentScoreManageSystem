@@ -37,11 +37,9 @@ public class AdminMainFrame extends JFrame {
         JButton addUser = new JButton("新增用户信息");
         JButton editUser = new JButton("修改用户信息");
         JButton cancelUser = new JButton("删除用户信息");
-        JButton exportUser = new JButton("导出用户信息");
         addUser.setPreferredSize(new Dimension(120,40));
         editUser.setPreferredSize(new Dimension(120,40));
         cancelUser.setPreferredSize(new Dimension(120,40));
-        exportUser.setPreferredSize(new Dimension(120,40));
 
         EditUserAction editUserAction = new EditUserAction();
         ExportUserAction exportUserAction = new ExportUserAction(user);
@@ -63,12 +61,9 @@ public class AdminMainFrame extends JFrame {
 
         cancelUser.addActionListener(deleteUserAction);
 
-        exportUser.addActionListener(exportUserAction);
-
         buttonPanel.add(addUser);
         buttonPanel.add(editUser);
         buttonPanel.add(cancelUser);
-        buttonPanel.add(exportUser);
         buttonPanel.add(new JLabel("欢迎您!"));
         buttonPanel.add(new JLabel(user.getUsername()));
     }
