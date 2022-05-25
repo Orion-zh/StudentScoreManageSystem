@@ -1,9 +1,6 @@
 package Indi.ZYXOrion.SSMS.Frame;
 
-import Indi.ZYXOrion.SSMS.Controller.DeleteUserAction;
-import Indi.ZYXOrion.SSMS.Controller.EditUserAction;
-import Indi.ZYXOrion.SSMS.Controller.ExportUserAction;
-import Indi.ZYXOrion.SSMS.Controller.LoadAdminInfo;
+import Indi.ZYXOrion.SSMS.Controller.*;
 import Indi.ZYXOrion.SSMS.Entity.User;
 
 import javax.swing.*;
@@ -12,24 +9,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TeacherMainFrame extends JFrame {
-    /*private JPanel buttonPanel;
+    private JPanel buttonPanel;
     private JPanel panelLeft;
     private JPanel panelRight;
     private JPanel panelButton;
     private JScrollPane queryArea;
-    private LoadAdminInfo adminInfo;
+    private QueryStudentScore studentScore;
     private JTable queryResult;
     private TeacherMainFrame jf = this;
-    private DeleteUserAction deleteUserAction;
+    private JTextField stuID;
+    private JComboBox coursename;
     public TeacherMainFrame(User user){
         this.setTitle("学生成绩管理系统-教师");
         this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
-        this.setBounds(540,240,800,600);
+        this.setBounds(475,240,930,600);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setButtonPanel();
-        setQueryArea();
-        setButtons(user);
         setEdge();
+        setButtons(user);
+        setQueryArea();
         this.setVisible(true);
     }
     private void setButtonPanel(){
@@ -37,48 +35,72 @@ public class TeacherMainFrame extends JFrame {
         this.add(buttonPanel,BorderLayout.NORTH);
     }
     private void setButtons(User user){
-        JButton addUser = new JButton("新增用户信息");
-        JButton editUser = new JButton("修改用户信息");
-        JButton cancelUser = new JButton("删除用户信息");
-        JButton exportUser = new JButton("导出用户信息");
-        addUser.setPreferredSize(new Dimension(120,40));
-        editUser.setPreferredSize(new Dimension(120,40));
-        cancelUser.setPreferredSize(new Dimension(120,40));
-        exportUser.setPreferredSize(new Dimension(120,40));
-
-        EditUserAction editUserAction = new EditUserAction();
-        ExportUserAction exportUserAction = new ExportUserAction(user);
-        deleteUserAction = new DeleteUserAction(this,adminInfo.getQueryResult());
-
-        addUser.addActionListener(new ActionListener() {
+        JButton addScore = new JButton("新增成绩信息");
+        JButton editScore = new JButton("修改成绩信息");
+        JButton cancelScore = new JButton("删除成绩信息");
+        JLabel courseQuery = new JLabel("课程名：");
+        JButton confirm = new JButton("查询");
+        coursename = new JComboBox();
+        coursename.setBackground(Color.white);
+        JLabel stuQuery = new JLabel("学号：");
+        stuID = new JTextField();
+        addScore.setPreferredSize(new Dimension(120,40));
+        editScore.setPreferredSize(new Dimension(120,40));
+        cancelScore.setPreferredSize(new Dimension(120,40));
+        confirm.setPreferredSize(new Dimension(120,30));
+        coursename.setPreferredSize(new Dimension(120,30));
+        courseQuery.setPreferredSize(new Dimension(60,40));
+        stuQuery.setPreferredSize(new Dimension(40,40));
+        stuID.setPreferredSize(new Dimension(90,30));
+/*
+        EditScoreAction editScoreAction = new EditScoreAction();
+        deleteScoreAction = new DeleteScoreAction(this,adminInfo.getQueryResult());
+*/
+        addScore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                AddUserFrame addUserFrame = new AddUserFrame(jf);
+                AddScoreFrame addUserFrame = new AddScoreFrame(jf);
+            }
+        });
+/*
+        editScore.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                EditScoreFrame editScoreFrame = new EditScoreFrame(jf,queryResult.getValueAt(queryResult.getSelectedRow(),0).toString());
             }
         });
 
-        editUser.addActionListener(new ActionListener() {
+        cancelScore.addActionListener(deleteScoreAction);
+
+ */
+        confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EditUserFrame editUserFrame = new EditUserFrame(jf,queryResult.getValueAt(queryResult.getSelectedRow(),0).toString());
+                String course = coursename.getSelectedItem().toString();
+                if(course.equals("全部")) course=null;
+                studentScore.Refresh(stuID.getText(),course);
             }
         });
-
-        cancelUser.addActionListener(deleteUserAction);
-
-        exportUser.addActionListener(exportUserAction);
-
-        buttonPanel.add(addUser);
-        buttonPanel.add(editUser);
-        buttonPanel.add(cancelUser);
-        buttonPanel.add(exportUser);
-        buttonPanel.add(new JLabel("欢迎您!"));
-        buttonPanel.add(new JLabel(user.getUsername()));
+        buttonPanel.add(addScore);
+        buttonPanel.add(editScore);
+        buttonPanel.add(cancelScore);
+        buttonPanel.add(courseQuery);
+        buttonPanel.add(coursename);
+        buttonPanel.add(stuQuery);
+        buttonPanel.add(stuID);
+        buttonPanel.add(confirm);
+        panelButton.add(new JLabel("欢迎您!"));
+        panelButton.add(new JLabel(user.getUsername()));
     }
     private void setQueryArea(){
         queryArea = new JScrollPane();
-        adminInfo = new LoadAdminInfo();
-        queryResult = adminInfo.getQueryResult();
+        studentScore = new QueryStudentScore(null);
+        queryResult = studentScore.getQueryResult();
+        coursename.addItem("全部");
+        Object[][] courseList = studentScore.getCourseList();
+        for(int i=0;i<courseList.length;i++){
+            coursename.addItem(courseList[i][1]);
+        }
         queryArea.getViewport().add(queryResult);
         queryArea.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         this.add(queryArea,BorderLayout.CENTER);
@@ -95,6 +117,6 @@ public class TeacherMainFrame extends JFrame {
         this.add(panelButton,BorderLayout.SOUTH);
     }
     public void refresh(){
-        adminInfo.freshAdminInfo();
-    }*/
+        studentScore.Refresh(null, null);
+    }
 }

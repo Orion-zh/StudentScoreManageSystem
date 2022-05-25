@@ -53,7 +53,7 @@ public class LoginAction implements ActionListener {
                     StudentMainFrame frame = new StudentMainFrame(processor.getUser(user));
                 }
                 else if(level==2){
-                    TeacherMainFrame frame = new TeacherMainFrame();
+                    TeacherMainFrame frame = new TeacherMainFrame(processor.getUser(user));
                 }
                 else if(level==3){
                     AdminMainFrame frame = new AdminMainFrame(processor.getUser(user));

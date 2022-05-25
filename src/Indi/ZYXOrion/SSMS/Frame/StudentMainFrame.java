@@ -67,6 +67,6 @@ public class StudentMainFrame extends JFrame {
         this.add(panelButton,BorderLayout.SOUTH);
     }
     public void refresh(){
-        scores.Refresh();
+        scores.Refresh(stuID,null);
     }
 }

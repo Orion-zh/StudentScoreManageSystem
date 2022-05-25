@@ -2,6 +2,8 @@ package Indi.ZYXOrion.SSMS.Database;
 
 import Indi.ZYXOrion.SSMS.Entity.*;
 
+import javax.swing.*;
+
 //数据库业务处理类
 public class DBProcessor {
     private DBConnector connect;
@@ -48,11 +50,33 @@ public class DBProcessor {
         connect.close();
         return state;
     }
-    public Object[][] getStudentQuery(String stuID){
+    public Object[][] getScoreQuery(String stuID, String courseID){
         Object[][] objects;
+        String stu,course;
+        if(stuID==null||stuID.equals("")){
+            stu = null;
+        } else {
+            stu = stuID;
+        }
+        if(courseID==null||courseID.equals("")){
+            course = null;
+        } else {
+            course = courseID;
+        }
         DBConnector connector = new DBConnector();
-        objects = connector.QueryStudent(stuID);
+        objects = connector.QueryStudent(stu, course);
         return objects;
     }
-
+    public boolean AddScore(String stuID, String courseName,String year, double scores){
+        connect = new DBConnector();
+        boolean state = connect.AddScore(stuID,courseName,year,scores);
+        connect.close();
+        return state;
+    }
+    public Object[][] getCourseList(){
+        connect = new DBConnector();
+        Object[][] result = connect.getCourseList();
+        connect.close();
+        return result;
+    }
 }
