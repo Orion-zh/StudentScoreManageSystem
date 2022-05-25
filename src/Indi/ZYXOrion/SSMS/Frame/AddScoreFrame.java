@@ -1,40 +1,48 @@
 package Indi.ZYXOrion.SSMS.Frame;
 
 import Indi.ZYXOrion.SSMS.Controller.AddScoreAction;
-import Indi.ZYXOrion.SSMS.Controller.AddUserAction;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//添加用户界面
 public class AddScoreFrame extends JDialog {
+    //对应的操作对象
     AddScoreAction addScoreAction = new AddScoreAction();
+    //界面组件
     TeacherMainFrame fatherFrame;
     JTextField stuIDText;
     JComboBox courseText;
     JTextField scoreText;
     JTextField openYear;
+    //构造函数
     public AddScoreFrame(TeacherMainFrame mainFrame){
+        //设置界面基础信息
         this.setTitle("创建成绩信息");
         this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
         this.setBounds(800,270,320,540);
         this.setLayout(null);
+        //设置界面的父界面和刷新界面
         fatherFrame = mainFrame;
         addScoreAction.setRefreshTarget(fatherFrame);
         addScoreAction.setFatherFrame(this);
         setInput();
         setConboBox();
         setConfirm();
+        //可改大小，显示
         this.setResizable(false);
         this.setVisible(true);
     }
+    //设置课程选择下拉框
     private void setConboBox(){
         Object[][] courseList = addScoreAction.getCourseList();
         for(int i=0;i<courseList.length;i++){
             courseText.addItem(courseList[i][1]);
         }
     }
+    //设置输入组件
     private void setInput(){
         JLabel stuIDLabel = new JLabel("学号：");
         stuIDText = new JTextField();
@@ -63,6 +71,7 @@ public class AddScoreFrame extends JDialog {
         this.add(scoreText);
 
     }
+    //设置确认按钮
     private void setConfirm(){
         JButton confirm = new JButton("确认");
         JButton cancel = new JButton("取消");

@@ -50,3 +50,22 @@ userName VARCHAR(30) NOT NULL,
 userPassword VARCHAR(30),
 userLevel int NOT NULL
 );
+
+CREATE VIEW Score_View as
+SELECT
+	`Score`.`courseID` AS `courseID`,
+	`Course`.`courseName` AS `courseName`,
+	`Score`.`studyYear` AS `studyYear`,
+	`Course`.`courseCredit` AS `courseCredit`,
+	`Score`.`stuID` AS `stuID`,
+	`Score`.`score` AS `score`
+FROM
+	(
+		`Score`
+		JOIN `Course` ON (
+			(
+				`Score`.`courseID` = `Course`.`courseID`
+			)
+		)
+	)
+;

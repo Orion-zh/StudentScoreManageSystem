@@ -1,19 +1,23 @@
 package Indi.ZYXOrion.SSMS.Frame;
 
 import Indi.ZYXOrion.SSMS.Controller.AddUserAction;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//添加用户界面
 public class AddUserFrame extends JDialog {
+    //添加用户界面
     AddUserAction addUserAction = new AddUserAction();
     AdminMainFrame fatherFrame;
+    //构造函数
     public AddUserFrame(AdminMainFrame mainFrame){
+        //设置界面基本信息
         this.setTitle("创建用户");
         this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
         this.setBounds(800,270,320,540);
         this.setLayout(null);
+        //设置界面父界面，刷新目标
         fatherFrame = mainFrame;
         addUserAction.setRefreshTarget(fatherFrame);
         addUserAction.setFatherFrame(this);
@@ -24,6 +28,7 @@ public class AddUserFrame extends JDialog {
         this.setResizable(false);
         this.setVisible(true);
     }
+    //设置输入组件
     private void setInput(){
         JLabel usernameLabel = new JLabel("用户名：");
         JTextField usernameText = new JTextField();
@@ -51,6 +56,7 @@ public class AddUserFrame extends JDialog {
         this.add(rePasswordText);
         addUserAction.setInput(usernameText,nameText,passwordText,rePasswordText);
     }
+    //设置权限组件
     private void setChooser(){
         JLabel levelLabel = new JLabel("权限：");
         levelLabel.setBounds(40,250,40,30);
@@ -88,6 +94,7 @@ public class AddUserFrame extends JDialog {
         this.add(teacherButton);
         this.add(adminButton);
     }
+    //设置确认组件
     private void setConfirm(){
         JButton confirm = new JButton("确认");
         JButton cancel = new JButton("取消");

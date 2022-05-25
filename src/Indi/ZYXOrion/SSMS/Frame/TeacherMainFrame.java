@@ -2,13 +2,14 @@ package Indi.ZYXOrion.SSMS.Frame;
 
 import Indi.ZYXOrion.SSMS.Controller.*;
 import Indi.ZYXOrion.SSMS.Entity.User;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//老师主类函数
 public class TeacherMainFrame extends JFrame {
+    //组件
     private JPanel buttonPanel;
     private JPanel panelLeft;
     private JPanel panelRight;
@@ -20,6 +21,7 @@ public class TeacherMainFrame extends JFrame {
     private JTextField stuID;
     private JComboBox coursename;
     private DeleteScoreAction deleteScoreAction;
+    //构造函数
     public TeacherMainFrame(User user){
         this.setTitle("学生成绩管理系统-教师");
         this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
@@ -32,10 +34,12 @@ public class TeacherMainFrame extends JFrame {
         setCourseList();
         this.setVisible(true);
     }
+    //设置Panel
     private void setButtonPanel(){
         buttonPanel = new JPanel(new FlowLayout());
         this.add(buttonPanel,BorderLayout.NORTH);
     }
+    //设置按钮
     private void setButtons(User user){
         JButton addScore = new JButton("新增成绩信息");
         JButton editScore = new JButton("修改成绩信息");
@@ -54,25 +58,32 @@ public class TeacherMainFrame extends JFrame {
         courseQuery.setPreferredSize(new Dimension(60,40));
         stuQuery.setPreferredSize(new Dimension(40,40));
         stuID.setPreferredSize(new Dimension(90,30));
-        //EditScoreAction editScoreAction = new EditScoreAction();
+        //添加操作
         addScore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AddScoreFrame addUserFrame = new AddScoreFrame(jf);
             }
         });
+        //删除操作
         deleteScoreAction = new DeleteScoreAction(this,studentScore.getQueryResult());
-        /*editScore.addActionListener(new ActionListener() {
+        //编辑操作
+        editScore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                EditScoreFrame editScoreFrame = new EditScoreFrame(jf,queryResult.getValueAt(queryResult.getSelectedRow(),0).toString());
+                //EditScoreFrame的构造函数
+                EditScoreFrame editScoreFrame = new EditScoreFrame(jf,
+                        queryResult.getValueAt(queryResult.getSelectedRow(),4).toString(),
+                        queryResult.getValueAt(queryResult.getSelectedRow(),0).toString(),
+                        queryResult.getValueAt(queryResult.getSelectedRow(),1).toString(),
+                        queryResult.getValueAt(queryResult.getSelectedRow(),2).toString());
             }
         });
-*/
         cancelScore.addActionListener(deleteScoreAction);
         confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //如果是全部则置特定查询字段为空
                 String course = coursename.getSelectedItem().toString();
                 if(course.equals("全部")) course=null;
                 studentScore.Refresh(stuID.getText(),course);
@@ -89,6 +100,7 @@ public class TeacherMainFrame extends JFrame {
         panelButton.add(new JLabel("欢迎您!"));
         panelButton.add(new JLabel(user.getUsername()));
     }
+    //设置数据表
     private void setQueryArea(){
         queryArea = new JScrollPane();
         studentScore = new QueryStudentScore(null);
@@ -97,6 +109,7 @@ public class TeacherMainFrame extends JFrame {
         queryArea.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         this.add(queryArea,BorderLayout.CENTER);
     }
+    //获取课程列表，添加到下拉框中
     private void setCourseList(){
         coursename.addItem("全部");
         Object[][] courseList = studentScore.getCourseList();
@@ -104,6 +117,7 @@ public class TeacherMainFrame extends JFrame {
             coursename.addItem(courseList[i][1]);
         }
     }
+    //设置边框
     private void setEdge(){
         panelLeft = new JPanel();
         panelRight = new JPanel();

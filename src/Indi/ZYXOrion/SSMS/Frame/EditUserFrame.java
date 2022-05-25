@@ -1,16 +1,18 @@
 package Indi.ZYXOrion.SSMS.Frame;
 
-import Indi.ZYXOrion.SSMS.Controller.AddUserAction;
 import Indi.ZYXOrion.SSMS.Controller.EditUserAction;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//编辑用户界面
 public class EditUserFrame extends JDialog {
+    //编辑用户操作类
     EditUserAction editUserAction = new EditUserAction();
     AdminMainFrame fatherFrame;
     String userLoginName;
+    //构造函数
     public EditUserFrame(AdminMainFrame mainFrame,String userLoginname){
         this.setTitle("修改用户信息");
         this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
@@ -27,6 +29,7 @@ public class EditUserFrame extends JDialog {
         this.setResizable(false);
         this.setVisible(true);
     }
+    //设置组件
     private void setInput(){
         JLabel usernameLabel = new JLabel("用户名：");
         JLabel usernameText = new JLabel(userLoginName);
@@ -54,6 +57,7 @@ public class EditUserFrame extends JDialog {
         this.add(rePasswordText);
         editUserAction.setInput(usernameText,nameText,passwordText,rePasswordText);
     }
+    //设置权限组件
     private void setChooser(){
         JLabel levelLabel = new JLabel("权限：");
         levelLabel.setBounds(40,250,40,30);
@@ -91,6 +95,7 @@ public class EditUserFrame extends JDialog {
         this.add(teacherButton);
         this.add(adminButton);
     }
+    //设置确认按键
     private void setConfirm(){
         JButton confirm = new JButton("确认");
         JButton cancel = new JButton("取消");

@@ -7,7 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//设置登录界面
 public class LoginFrame extends JFrame{
+    //组件
     private JLabel usernameLabel;
     private JLabel passwordLabel;
     private JTextField usernameText;
@@ -22,6 +24,8 @@ public class LoginFrame extends JFrame{
     private LoginAction loginAction;
     private LoginFrame jf = this;
     private int level = 1;
+
+    //构造函数
     public LoginFrame(){
         //组件
         con = getContentPane();
@@ -31,9 +35,9 @@ public class LoginFrame extends JFrame{
         setInput();
         setChooser();
         setButton();
-        //初始化窗口
         Init();
     }
+    //设置界面信息
     private void Init(){
         this.setTitle("学生成绩管理系统");
         this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
@@ -43,20 +47,20 @@ public class LoginFrame extends JFrame{
         this.setResizable(false);
         this.setVisible(true);
     }
+    //设置标题图片
     private void setImg(){
         labelImage = new JLabel(new ImageIcon("Img/Icon2.png"));
         labelImage.setBounds(200,50,400,130);
         this.con.add(labelImage);
     }
+    //设置输入组件
     private void setInput(){
-        //用户名
         usernameLabel = new JLabel("用户名：");
         usernameLabel.setBounds(295, 230, 60, 30);
         this.con.add(usernameLabel);
         usernameText = new JTextField();
         usernameText.setBounds(355, 230, 150, 30);
         this.con.add(usernameText);
-        //密码
         passwordLabel = new JLabel("密码:");
         passwordLabel.setBounds(295, 280, 60, 30);
         this.con.add(passwordLabel);
@@ -64,6 +68,7 @@ public class LoginFrame extends JFrame{
         passwordText.setBounds(355, 280, 150, 30);
         this.con.add(passwordText);
     }
+    //设置权限选择
     private void setChooser(){
         privilege = new ButtonGroup();
         studentButton = new JRadioButton("学生");
@@ -103,6 +108,7 @@ public class LoginFrame extends JFrame{
         });
         this.con.add(adminButton);
     }
+    //设置登录
     private void setButton(){
         //按键
         loginAction = new LoginAction();

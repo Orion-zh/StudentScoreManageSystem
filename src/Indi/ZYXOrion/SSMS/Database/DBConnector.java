@@ -1,10 +1,7 @@
 package Indi.ZYXOrion.SSMS.Database;
 
-
 import Indi.ZYXOrion.SSMS.Entity.*;
-
 import javax.swing.*;
-import java.util.*;
 import java.sql.*;
 
 //数据库通信类
@@ -43,7 +40,6 @@ public class DBConnector implements JDBCConfig{
         }
         return newUser;
     }
-
     //关闭数据库连接
     public void close()	{
         try {
@@ -74,6 +70,7 @@ public class DBConnector implements JDBCConfig{
         }
         return state;
     }
+    //查询管理员信息
     public Object[][] QueryAdmin(){
         int count = 0;
         Object[][] objects;
@@ -108,6 +105,7 @@ public class DBConnector implements JDBCConfig{
         }
         return objects;
     }
+    //删除用户
     public boolean DeleteUser(String userLoginName){
         boolean state = true;
         try{
@@ -124,6 +122,7 @@ public class DBConnector implements JDBCConfig{
         }
         return state;
     }
+    //编辑用户
     public boolean EditUser(User user){
         boolean state = true;
         try {
@@ -161,6 +160,7 @@ public class DBConnector implements JDBCConfig{
         }
         return state;
     }
+    //查询成绩信息
     public Object[][] QueryStudent(String stuID, String courseID){
         int count = 0;
         Object[][] objects;
@@ -201,6 +201,7 @@ public class DBConnector implements JDBCConfig{
         }
         return objects;
     }
+    //添加成绩信息
     public boolean AddScore(String stuID, String courseName, String year, double score){
         boolean state = true;
         try {
@@ -220,6 +221,7 @@ public class DBConnector implements JDBCConfig{
         }
         return state;
     }
+    //获取课程列表
     public Object[][] getCourseList(){
         int count = 0;
         Object[][] objects;
@@ -243,6 +245,7 @@ public class DBConnector implements JDBCConfig{
         }
         return objects;
     }
+    //删除成绩信息
     public boolean DeleteScore(String stuID,String courseID){
         boolean state = true;
         try{
@@ -260,4 +263,22 @@ public class DBConnector implements JDBCConfig{
         }
         return state;
     }
+    //编辑成绩信息
+    public boolean EditScore(String stuID,String courseID,String score){
+        boolean state = true;
+        try {
+            preparedStatement = connection.prepareStatement("update Score set score = ? where stuID = ? and courseID=?;");
+            preparedStatement.setInt(1, Integer.parseInt(score));
+            preparedStatement.setString(2, stuID);
+            preparedStatement.setString(3,courseID);
+            if (preparedStatement.executeUpdate() != 1) {
+                state = false;
+            }
+        } catch (SQLException e){
+            state = false;
+            e.printStackTrace();
+        }
+        return state;
+    }
+
 }

@@ -6,16 +6,18 @@ import Indi.ZYXOrion.SSMS.Frame.AdminMainFrame;
 import Indi.ZYXOrion.SSMS.Frame.LoginFrame;
 import Indi.ZYXOrion.SSMS.Frame.StudentMainFrame;
 import Indi.ZYXOrion.SSMS.Frame.TeacherMainFrame;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//登录操作类
 public class LoginAction implements ActionListener {
+    //数据源
     private JTextField usernameText;
     private JPasswordField passwordText;
     private int level;
     private LoginFrame jframe;
+    //设置数据
     public void setUsernameText(JTextField username){
         usernameText = username;
     }
@@ -25,11 +27,13 @@ public class LoginAction implements ActionListener {
     public void setLevel(int level){
         this.level=level;
     }
+    //执行登陆操作
     @Override
     public void actionPerformed(ActionEvent e) {
-        //读取
+        //从组件中获取数据
         String username = usernameText.getText().trim();
         String password = new String(passwordText.getPassword());
+        //报错
         JFrame jf = new JFrame("错误");
         if(username.equals("")){
             JOptionPane.showMessageDialog(jf, "用户名不能为空","",JOptionPane.WARNING_MESSAGE);
@@ -39,12 +43,15 @@ public class LoginAction implements ActionListener {
             JOptionPane.showMessageDialog(jf, "密码不能为空","",JOptionPane.WARNING_MESSAGE);
             return ;
         }
-        //登录业务处理
+        //创建用户
         User user = new User();
+        //给用户对象复制
         user.setUsername(username);
         user.setPassword(password);
         user.setLevel(level);
+        //数据库操作
         DBProcessor processor = new DBProcessor();
+        //判断将打开的下层界面类型
         if(processor.Login(user)){
                 JOptionPane.showMessageDialog(jf, "登陆成功！");
                 jf.dispose();
@@ -66,6 +73,7 @@ public class LoginAction implements ActionListener {
             return ;
         }
     }
+    //重置界面
     public void Reset(){
         usernameText.setText("");
         passwordText.setText("");
