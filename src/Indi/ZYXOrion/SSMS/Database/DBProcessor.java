@@ -79,4 +79,9 @@ public class DBProcessor {
         connect.close();
         return result;
     }
+    public boolean deleteScore(String stuID,String courseID){
+        connect = new DBConnector();
+        boolean state = connect.DeleteScore(stuID,courseID);
+        return state;
+    }
 }

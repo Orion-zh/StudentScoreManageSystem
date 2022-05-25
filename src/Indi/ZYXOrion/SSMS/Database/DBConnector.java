@@ -178,7 +178,6 @@ public class DBConnector implements JDBCConfig{
             queryCondition = "select * from Score_View where stuID="+stuID+" and courseID=\'"+courseID+"\'";
         }
         try{
-            System.out.println(queryCondition);
             preparedStatement = connection.prepareStatement(queryCondition);
             resultSet = preparedStatement.executeQuery();
             while(resultSet.next()){
@@ -243,5 +242,22 @@ public class DBConnector implements JDBCConfig{
             e.printStackTrace();
         }
         return objects;
+    }
+    public boolean DeleteScore(String stuID,String courseID){
+        boolean state = true;
+        try{
+            preparedStatement = connection.prepareStatement("delete from Score where stuID=? and courseID=?");
+            preparedStatement.setString(1,stuID);
+            preparedStatement.setString(2,courseID);
+            int s =preparedStatement.executeUpdate();
+            if(s!=1){
+                System.out.println("Error");
+                state = false;
+            }
+        } catch(SQLException e){
+            state = false;
+            e.printStackTrace();
+        }
+        return state;
     }
 }

@@ -19,6 +19,7 @@ public class TeacherMainFrame extends JFrame {
     private TeacherMainFrame jf = this;
     private JTextField stuID;
     private JComboBox coursename;
+    private DeleteScoreAction deleteScoreAction;
     public TeacherMainFrame(User user){
         this.setTitle("学生成绩管理系统-教师");
         this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
@@ -26,8 +27,9 @@ public class TeacherMainFrame extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setButtonPanel();
         setEdge();
-        setButtons(user);
         setQueryArea();
+        setButtons(user);
+        setCourseList();
         this.setVisible(true);
     }
     private void setButtonPanel(){
@@ -52,27 +54,22 @@ public class TeacherMainFrame extends JFrame {
         courseQuery.setPreferredSize(new Dimension(60,40));
         stuQuery.setPreferredSize(new Dimension(40,40));
         stuID.setPreferredSize(new Dimension(90,30));
-/*
-        EditScoreAction editScoreAction = new EditScoreAction();
-        deleteScoreAction = new DeleteScoreAction(this,adminInfo.getQueryResult());
-*/
+        //EditScoreAction editScoreAction = new EditScoreAction();
         addScore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AddScoreFrame addUserFrame = new AddScoreFrame(jf);
             }
         });
-/*
-        editScore.addActionListener(new ActionListener() {
+        deleteScoreAction = new DeleteScoreAction(this,studentScore.getQueryResult());
+        /*editScore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 EditScoreFrame editScoreFrame = new EditScoreFrame(jf,queryResult.getValueAt(queryResult.getSelectedRow(),0).toString());
             }
         });
-
+*/
         cancelScore.addActionListener(deleteScoreAction);
-
- */
         confirm.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -96,14 +93,16 @@ public class TeacherMainFrame extends JFrame {
         queryArea = new JScrollPane();
         studentScore = new QueryStudentScore(null);
         queryResult = studentScore.getQueryResult();
+        queryArea.getViewport().add(queryResult);
+        queryArea.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        this.add(queryArea,BorderLayout.CENTER);
+    }
+    private void setCourseList(){
         coursename.addItem("全部");
         Object[][] courseList = studentScore.getCourseList();
         for(int i=0;i<courseList.length;i++){
             coursename.addItem(courseList[i][1]);
         }
-        queryArea.getViewport().add(queryResult);
-        queryArea.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        this.add(queryArea,BorderLayout.CENTER);
     }
     private void setEdge(){
         panelLeft = new JPanel();
