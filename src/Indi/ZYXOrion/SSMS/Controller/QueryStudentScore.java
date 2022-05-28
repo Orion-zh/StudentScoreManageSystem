@@ -24,7 +24,7 @@ public class QueryStudentScore {
     public QueryStudentScore(String stuID){
         this.stuNo = stuID;
         processor = new DBProcessor();
-        dataTable = processor.getScoreQuery(stuNo,null);
+        dataTable = processor.getScoreQuery(stuNo,null,0);
         courseList = processor.getCourseList();
         QueryResult = new JTable(dataTable,TableTitleData){
             public boolean isCellEditable(int row, int column){
@@ -40,8 +40,8 @@ public class QueryStudentScore {
         return QueryResult;
     }
     //刷新数据表
-    public void Refresh(String stuID, String courseID) {
-        dataTable = processor.getScoreQuery(stuID,getCourseID(courseID));
+    public void Refresh(String stuID, String courseID,int c) {
+        dataTable = processor.getScoreQuery(stuID,getCourseID(courseID),c);
         TableModel tableModel = new DefaultTableModel(dataTable, TableTitleData);
         QueryResult.setModel(tableModel);
     }

@@ -86,7 +86,7 @@ public class TeacherMainFrame extends JFrame {
                 //如果是全部则置特定查询字段为空
                 String course = coursename.getSelectedItem().toString();
                 if(course.equals("全部")) course=null;
-                studentScore.Refresh(stuID.getText(),course);
+                studentScore.Refresh(stuID.getText(),course,0);
             }
         });
         buttonPanel.add(addScore);
@@ -97,6 +97,25 @@ public class TeacherMainFrame extends JFrame {
         buttonPanel.add(stuQuery);
         buttonPanel.add(stuID);
         buttonPanel.add(confirm);
+
+        JButton AscButton = new JButton("按成绩升序排列");
+        JButton DescButton = new JButton("按成绩降序排列");
+        AscButton.setPreferredSize(new Dimension(150,30));
+        DescButton.setPreferredSize(new Dimension(150,30));
+        AscButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                studentScore.Refresh(null, null,1);
+            }
+        });
+        DescButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                studentScore.Refresh(null, null,2);
+            }
+        });
+        panelButton.add(AscButton);
+        panelButton.add(DescButton);
         panelButton.add(new JLabel("欢迎您!"));
         panelButton.add(new JLabel(user.getUsername()));
     }
@@ -130,6 +149,6 @@ public class TeacherMainFrame extends JFrame {
         this.add(panelButton,BorderLayout.SOUTH);
     }
     public void refresh(){
-        studentScore.Refresh(null, null);
+        studentScore.Refresh(null, null,0);
     }
 }

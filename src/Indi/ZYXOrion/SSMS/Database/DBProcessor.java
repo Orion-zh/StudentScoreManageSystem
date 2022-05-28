@@ -53,7 +53,7 @@ public class DBProcessor {
         return state;
     }
     //查询成绩
-    public Object[][] getScoreQuery(String stuID, String courseID){
+    public Object[][] getScoreQuery(String stuID, String courseID,int c){
         Object[][] objects;
         String stu,course;
         if(stuID==null||stuID.equals("")){
@@ -67,7 +67,7 @@ public class DBProcessor {
             course = courseID;
         }
         DBConnector connector = new DBConnector();
-        objects = connector.QueryStudent(stu, course);
+        objects = connector.QueryStudent(stu, course,c);
         return objects;
     }
     //添加成绩

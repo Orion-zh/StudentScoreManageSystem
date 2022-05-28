@@ -74,6 +74,6 @@ public class StudentMainFrame extends JFrame {
     }
     //Ë¢ÐÂº¯Êý
     public void refresh(){
-        scores.Refresh(stuID,null);
+        scores.Refresh(stuID,null,0);
     }
 }

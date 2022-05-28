@@ -161,7 +161,7 @@ public class DBConnector implements JDBCConfig{
         return state;
     }
     //查询成绩信息
-    public Object[][] QueryStudent(String stuID, String courseID){
+    public Object[][] QueryStudent(String stuID, String courseID,int c){
         int count = 0;
         Object[][] objects;
         String queryCondition;
@@ -177,6 +177,8 @@ public class DBConnector implements JDBCConfig{
         else {
             queryCondition = "select * from Score_View where stuID="+stuID+" and courseID=\'"+courseID+"\'";
         }
+        if(c==1) queryCondition += " order by score asc";
+        else if(c==2) queryCondition += " order by score desc";
         try{
             preparedStatement = connection.prepareStatement(queryCondition);
             resultSet = preparedStatement.executeQuery();

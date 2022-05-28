@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//添加用户界面
+//添加成绩界面
 public class AddScoreFrame extends JDialog {
     //对应的操作对象
     AddScoreAction addScoreAction = new AddScoreAction();

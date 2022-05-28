@@ -1,52 +1,59 @@
 CREATE DATABASE SSMS;
 USE SSMS;
+-- ----------------------------
+-- Table structure for Course
+-- ----------------------------
+DROP TABLE IF EXISTS `Course`;
+CREATE TABLE `Course` (
+  `courseID` varchar(6) NOT NULL,
+  `courseName` varchar(30) NOT NULL,
+  `courseCredit` decimal(2,1) DEFAULT NULL,
+  PRIMARY KEY (`courseID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE Department(
-deptID VARCHAR(6) PRIMARY KEY,
-deptName VARCHAR(30) NOT NULL
-);
 
-CREATE TABLE Course(
-courseID VARCHAR(6) PRIMARY KEY,
-courseName VARCHAR(30) NOT NULL
-);
+-- ----------------------------
+-- Table structure for Score
+-- ----------------------------
+DROP TABLE IF EXISTS `Score`;
+CREATE TABLE `Score` (
+  `stuID` varchar(11) NOT NULL,
+  `courseID` varchar(11) NOT NULL,
+  `studyYear` char(4) DEFAULT NULL,
+  `score` int DEFAULT NULL,
+  PRIMARY KEY (`stuID`,`courseID`),
+  KEY `courseID` (`courseID`),
+  CONSTRAINT `Score_ibfk_2` FOREIGN KEY (`courseID`) REFERENCES `Course` (`courseID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE Major(
-majorID VARCHAR(6) PRIMARY KEY,
-majorName VARCHAR(6) NOT NULL,
-deptID VARCHAR(6) NOT NULL,
-FOREIGN KEY (deptID) REFERENCES Department(deptID)
-);
 
-CREATE TABLE Class(
-classID VARCHAR(6) PRIMARY KEY,
-className VARCHAR(30) NOT NULL,
-majorID VARCHAR(6) NOT NULL,
-grade CHAR(4) NOT NULL,
-FOREIGN KEY (majorID) REFERENCES Major(majorID)
-);
+-- ----------------------------
+-- Table structure for Student
+-- ----------------------------
+DROP TABLE IF EXISTS `Student`;
+CREATE TABLE `Student` (
+  `stuID` varchar(11) NOT NULL,
+  `stuName` varchar(30) NOT NULL,
+  `stuSex` varchar(4) DEFAULT NULL,
+  PRIMARY KEY (`stuID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE Student(
-stuID varchar(11) PRIMARY KEY,
-stuName VARCHAR(30) NOT NULL,
-stuSex varchar(4) ,
-stuClass varchar(6) NOT NULL,
-FOREIGN KEY (stuClass) REFERENCES Class(ClassID)
-);
 
-CREATE TABLE Score(
-stuID varchar(11),
-courseID varchar(11),
-studyYear char(4),
-score int,
-PRIMARY KEY (stuID,CourseID),
-FOREIGN KEY (stuID) REFERENCES Student(stuID),
-FOREIGN KEY (courseID) REFERENCES Course(courseID)
-);
+-- ----------------------------
+-- Table structure for Users
+-- ----------------------------
+DROP TABLE IF EXISTS `Users`;
+CREATE TABLE `Users` (
+  `userLoginName` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `userName` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `userPassword` varchar(30) DEFAULT NULL,
+  `userLevel` int NOT NULL,
+  PRIMARY KEY (`userLoginName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE Users(
-userLoginName VARCHAR(11) PRIMARY KEY,
-userName VARCHAR(30) NOT NULL,
-userPassword VARCHAR(30),
-userLevel int NOT NULL
-);
+
+-- ----------------------------
+-- View structure for Score_View
+-- ----------------------------
+DROP VIEW IF EXISTS `Score_View`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `Score_View` AS select `Score`.`courseID` AS `courseID`,`Course`.`courseName` AS `courseName`,`Score`.`studyYear` AS `studyYear`,`Course`.`courseCredit` AS `courseCredit`,`Score`.`stuID` AS `stuID`,`Score`.`score` AS `score` from (`Score` join `Course` on((`Score`.`courseID` = `Course`.`courseID`))) ;
