@@ -112,6 +112,7 @@ public class LoginFrame extends JFrame{
     private void setButton(){
         //°´¼ü
         loginAction = new LoginAction();
+        loginAction.setLevel(1);
         loginAction.fatherFrame(jf);
         loginAction.setUsernameText(usernameText);
         loginAction.setPasswordText(passwordText);
