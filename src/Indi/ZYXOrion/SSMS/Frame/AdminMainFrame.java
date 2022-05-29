@@ -23,7 +23,7 @@ public class AdminMainFrame extends JFrame {
     public AdminMainFrame(User user){
         //设置基本数据
         this.setTitle("学生成绩管理系统-管理员");
-        this.setIconImage(new ImageIcon("/Img/Icon1.png").getImage());
+        this.setIconImage(new ImageIcon(this.getClass().getResource("/Img/Icon1.png")).getImage());
         this.setBounds(540,240,800,600);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setButtonPanel();

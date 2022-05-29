@@ -22,7 +22,7 @@ public class StudentMainFrame extends JFrame {
     public StudentMainFrame(User user){
         stuID=user.getUsername();
         this.setTitle("学生成绩管理系统-学生");
-        this.setIconImage(new ImageIcon("/Img/Icon1.png").getImage());
+        this.setIconImage(new ImageIcon(this.getClass().getResource("/Img/Icon1.png")).getImage());
         this.setBounds(540,240,800,600);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setButtonPanel();

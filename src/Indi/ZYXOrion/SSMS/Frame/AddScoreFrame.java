@@ -21,7 +21,7 @@ public class AddScoreFrame extends JDialog {
     public AddScoreFrame(TeacherMainFrame mainFrame){
         //设置界面基础信息
         this.setTitle("创建成绩信息");
-        this.setIconImage(new ImageIcon("/Img/Icon1.png").getImage());
+        this.setIconImage(new ImageIcon(this.getClass().getResource("/Img/Icon1.png")).getImage());
         this.setBounds(800,270,320,540);
         this.setLayout(null);
         //设置界面的父界面和刷新界面
