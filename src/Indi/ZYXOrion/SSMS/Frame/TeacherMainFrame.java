@@ -105,13 +105,13 @@ public class TeacherMainFrame extends JFrame {
         AscButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                studentScore.Refresh(null, null,1);
+                studentScore.Refresh(stuID.getText(), coursename.getSelectedItem().toString(),1);
             }
         });
         DescButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                studentScore.Refresh(null, null,2);
+                studentScore.Refresh(stuID.getText(), coursename.getSelectedItem().toString(),2);
             }
         });
         panelButton.add(AscButton);
