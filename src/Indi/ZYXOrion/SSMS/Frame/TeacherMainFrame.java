@@ -24,7 +24,7 @@ public class TeacherMainFrame extends JFrame {
     //构造函数
     public TeacherMainFrame(User user){
         this.setTitle("学生成绩管理系统-教师");
-        this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
+        this.setIconImage(new ImageIcon("/Img/Icon1.png").getImage());
         this.setBounds(475,240,930,600);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setButtonPanel();

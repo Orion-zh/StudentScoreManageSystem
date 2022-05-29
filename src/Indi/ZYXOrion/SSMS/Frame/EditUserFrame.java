@@ -15,7 +15,7 @@ public class EditUserFrame extends JDialog {
     //构造函数
     public EditUserFrame(AdminMainFrame mainFrame,String userLoginname){
         this.setTitle("修改用户信息");
-        this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
+        this.setIconImage(new ImageIcon("/Img/Icon1.png").getImage());
         this.setBounds(800,270,320,540);
         this.setLayout(null);
         this.userLoginName = userLoginname;

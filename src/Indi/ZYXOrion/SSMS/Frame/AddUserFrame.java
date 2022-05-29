@@ -14,7 +14,7 @@ public class AddUserFrame extends JDialog {
     public AddUserFrame(AdminMainFrame mainFrame){
         //设置界面基本信息
         this.setTitle("创建用户");
-        this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
+        this.setIconImage(new ImageIcon("/Img/Icon1.png").getImage());
         this.setBounds(800,270,320,540);
         this.setLayout(null);
         //设置界面父界面，刷新目标

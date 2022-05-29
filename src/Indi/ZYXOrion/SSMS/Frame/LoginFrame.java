@@ -40,7 +40,7 @@ public class LoginFrame extends JFrame{
     //设置界面信息
     private void Init(){
         this.setTitle("学生成绩管理系统");
-        this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
+        this.setIconImage(new ImageIcon(this.getClass().getResource("/Img/Icon1.png")).getImage());
         this.setLayout(null);
         this.setBounds(540,240,800,600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,7 +49,7 @@ public class LoginFrame extends JFrame{
     }
     //设置标题图片
     private void setImg(){
-        labelImage = new JLabel(new ImageIcon("Img/Icon2.png"));
+        labelImage = new JLabel(new ImageIcon(this.getClass().getResource("/Img/Icon2.png")));
         labelImage.setBounds(200,50,400,130);
         this.con.add(labelImage);
     }

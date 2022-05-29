@@ -19,7 +19,7 @@ public class EditScoreFrame extends JDialog {
     //构造函数，传入函数
     public EditScoreFrame(TeacherMainFrame mainFrame,String stuID, String courseID,String courseName, String courseYear){
         this.setTitle("修改成绩信息");
-        this.setIconImage(new ImageIcon("Img/Icon1.png").getImage());
+        this.setIconImage(new ImageIcon("/Img/Icon1.png").getImage());
         this.setBounds(800,270,320,540);
         this.setLayout(null);
         this.stuID=stuID;
